@@ -10,6 +10,7 @@ PURPLE = (50, 40, 110)
 FPS = 60
 SPACESHIP_IMAGE = pygame.image.load(
     os.path.join(
+        "game_jam",
         "Assets",
         "Spaceship",
         "Spaceship-shooter-environment",
