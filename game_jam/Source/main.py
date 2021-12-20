@@ -1,5 +1,6 @@
 import os
 import pygame
+from spaceship import SPACESHIP_IMAGE, SPACESHIP
 
 WIDTH, HEIGHT = 700, 700
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -8,18 +9,6 @@ pygame.display.set_caption("Failure is Inevitable")
 PURPLE = (50, 40, 110)
 
 FPS = 60
-SPACESHIP_IMAGE = pygame.image.load(
-    os.path.join(
-        "game_jam",
-        "Assets",
-        "Spaceship",
-        "Spaceship-shooter-environment",
-        "Spaceship-shooter-environment",
-        "spritesheets",
-        "ship.png",
-    )
-)
-SPACESHIP = pygame.transform.scale(SPACESHIP_IMAGE, (150, 150))
 
 
 def draw_window():
