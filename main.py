@@ -2,7 +2,7 @@ import pygame
 
 WIDTH, HEIGHT = 900, 500
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('First Game')
+pygame.display.set_caption('Failure is Inevitable')
 
 PURPLE = (50, 40, 110)
 
