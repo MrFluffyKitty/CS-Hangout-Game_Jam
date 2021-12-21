@@ -1,20 +1,32 @@
-import os  # File navigation
+import os
 import pygame
-from spaceship import SPACESHIP_IMAGE, SPACESHIP
+import time
+from spaceship import *
 
 WIDTH, HEIGHT = 700, 700
-WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))  # Creates window
-pygame.display.set_caption("Failure is Inevitable")  # Title
+WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Failure is Inevitable")
 
 BLACK = (0, 0, 0)
-
 FPS = 60
+
+moving_sprites = pygame.sprite.Group()
+player = Player(320, 480)
+moving_sprites.add(player)
+
+
+def draw_window():
+    moving_sprites.draw(WINDOW)
+    moving_sprites.update()
+    pygame.display.flip()
+    pygame.display.update()
 
 
 def main():
-    # Sets background image
+
     BACKGROUND = pygame.transform.scale(pygame.image.load(os.path.join(
-        'game_jam', 'Assets', 'Background', 'Galaxy_bg', 'Purple_Nebula', 'PN1.png')), (700, 700)).convert()
+        'game_jam', 'Assets', 'Background', 'Galaxy_bg',
+        'Purple_Nebula', 'PN1.png')), (700, 700)).convert()
 
     # Background coordinate (y)
     y = 0
@@ -26,6 +38,8 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+            if event.type == pygame.KEYDOWN:
+                player.animate()
 
         WINDOW.fill(BLACK)
 
@@ -42,12 +56,9 @@ def main():
         # Scrolls background on y-axis
         y += 1
 
-        # Renders spaceship sprite
-        WINDOW.blit(SPACESHIP, (320, 550))
+        draw_window()
 
         pygame.display.update()
-
-    pygame.quit()
 
 
 if __name__ == "__main__":
