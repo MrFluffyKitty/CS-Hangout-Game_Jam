@@ -16,7 +16,7 @@ def main():
     BACKGROUND = pygame.transform.scale(pygame.image.load(os.path.join(
         'game_jam', 'Assets', 'Background', 'Galaxy_bg', 'Purple_Nebula', 'PN1.png')), (700, 700)).convert()
 
-    # Background coordinates (x, y)
+    # Background coordinate (y)
     y = 0
 
     clock = pygame.time.Clock()
@@ -29,13 +29,22 @@ def main():
 
         WINDOW.fill(BLACK)
 
+        # Ensures that rel_y never goes over/under height of image
         rel_y = y % BACKGROUND.get_rect().height
+
+        # Renders background
         WINDOW.blit(BACKGROUND, (0, rel_y - BACKGROUND.get_rect().height))
+
+        # Keeps background img on screen
         if rel_y < HEIGHT:
             WINDOW.blit(BACKGROUND, (0, rel_y))
+
         # Scrolls background on y-axis
         y += 1
+
+        # Renders spaceship sprite
         WINDOW.blit(SPACESHIP, (320, 550))
+
         pygame.display.update()
 
     pygame.quit()
