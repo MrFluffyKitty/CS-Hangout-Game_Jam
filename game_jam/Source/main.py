@@ -1,18 +1,20 @@
-import os
+import os  # File navigation
 import pygame
 from spaceship import SPACESHIP_IMAGE, SPACESHIP
+from background import BACKGROUND
 
 WIDTH, HEIGHT = 700, 700
-WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Failure is Inevitable")
+WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))  # Creates window
+pygame.display.set_caption("Failure is Inevitable")  # Title
 
-PURPLE = (50, 40, 110)
+BLACK = (0, 0, 0)
 
 FPS = 60
 
 
-def draw_window():
-    WINDOW.fill(PURPLE)
+def draw_window():  # Draws window and loads assets/updates accordingly
+    WINDOW.fill(BLACK)
+    WINDOW.blit(BACKGROUND, (0, 0))
     WINDOW.blit(SPACESHIP, (320, 550))
     pygame.display.update()
 
