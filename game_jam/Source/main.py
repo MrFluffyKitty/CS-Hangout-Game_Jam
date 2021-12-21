@@ -40,6 +40,8 @@ def main():
                 run = False
             if event.type == pygame.KEYDOWN:
                 player.animate()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                run = False
 
         WINDOW.fill(BLACK)
 
