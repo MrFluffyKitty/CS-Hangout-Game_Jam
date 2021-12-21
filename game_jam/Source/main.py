@@ -1,7 +1,8 @@
 import os  # File navigation
 import pygame
-from spaceship import SPACESHIP_IMAGE, SPACESHIP
 from background import BACKGROUND
+from spaceship import SPACESHIP_IMAGE, SPACESHIP
+
 
 WIDTH, HEIGHT = 700, 700
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))  # Creates window
