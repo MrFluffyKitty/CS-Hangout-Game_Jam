@@ -1,8 +1,6 @@
 import os  # File navigation
 import pygame
-from background import BACKGROUND
 from spaceship import SPACESHIP_IMAGE, SPACESHIP
-
 
 WIDTH, HEIGHT = 700, 700
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))  # Creates window
@@ -13,14 +11,14 @@ BLACK = (0, 0, 0)
 FPS = 60
 
 
-def draw_window():  # Draws window and loads assets/updates accordingly
-    WINDOW.fill(BLACK)
-    WINDOW.blit(BACKGROUND, (0, 0))
-    WINDOW.blit(SPACESHIP, (320, 550))
-    pygame.display.update()
-
-
 def main():
+    # Sets background image
+    BACKGROUND = pygame.transform.scale(pygame.image.load(os.path.join(
+        'game_jam', 'Assets', 'Background', 'Galaxy_bg', 'Purple_Nebula', 'PN1.png')), (700, 700)).convert()
+
+    # Background coordinates (x, y)
+    y = 0
+
     clock = pygame.time.Clock()
     run = True
     while run:
@@ -29,7 +27,16 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
 
-        draw_window()
+        WINDOW.fill(BLACK)
+
+        rel_y = y % BACKGROUND.get_rect().height
+        WINDOW.blit(BACKGROUND, (0, rel_y - BACKGROUND.get_rect().height))
+        if rel_y < HEIGHT:
+            WINDOW.blit(BACKGROUND, (0, rel_y))
+        # Scrolls background on y-axis
+        y += 1
+        WINDOW.blit(SPACESHIP, (320, 550))
+        pygame.display.update()
 
     pygame.quit()
 
