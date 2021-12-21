@@ -2,6 +2,7 @@ import os
 import pygame
 import time
 from spaceship import *
+from pygame.locals import *
 
 WIDTH, HEIGHT = 700, 700
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -31,10 +32,24 @@ def main():
     # Background coordinate (y)
     y = 0
 
+    # Initializes mixer
+    pygame.mixer.init()
+
+    # Grabs sound file
+    pygame.mixer.music.load(os.path.join(
+        'game_jam', 'Assets', 'Sounds', 'spaceship_music', 'Far-Out_OST', 'OST', 'Far-Out-Hurry_Up.wav'))
+
+    # Plays music indefinitely
+    pygame.mixer.music.play(-1)
+
+    # Sets music volume
+    pygame.mixer.music.set_volume(0.3)
+
     clock = pygame.time.Clock()
     run = True
     while run:
         clock.tick(FPS)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
